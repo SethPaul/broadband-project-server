@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, Markup
-import pandas as pd
+# import pandas as pd
 import requests
 import simplejson
 import datetime
