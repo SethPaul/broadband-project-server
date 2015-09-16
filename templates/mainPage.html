@@ -1,114 +1,135 @@
-<!doctype html>
-<title>Teacher Shortage</title>
-<link rel=stylesheet type=text/css href='{{url_for('static', filename='page_style.css')}}'>
-<div class=page>
-  <div class=body>
-    <h1>Teacher Salaries</h1>
-    <h2>Background</h2>
-    <p>
-      There is currently a teacher shortage that is sweeping the nation
-      <sup>
-        <a href='http://www.nytimes.com/2015/08/10/us/teacher-shortages-spur-a-nationwide-hiring-scramble-credentials-optional.html'>1</a>,
-      </sup>.</br>
-      This shoratage can increase teacher-to-student ratios and in some cases reduce
-      the school year
-      <sup>
-      <a href='http://www.huffingtonpost.com/2015/04/22/kansas-schools-funding_n_7112702.html'>2</a></sup>.
-    </br>
-    <a href='http://www.pewresearch.org/fact-tank/2015/02/02/u-s-students-improving-slowly-in-math-and-science-but-still-lagging-internationally/'>3</a></sup>
-      [Additional info on background and factors.]
-    </p>
-    <p>
-      These shortages are a multifactorial problem but we'll try to look at a few
-      aspects of it. Government supplied data at <a href='http://nces.ed.gov/'>http://www.nces.ed.gov/</a>
-      will be used to analyze some of the factors related to this issue. One of
-      the leading complaints of teachers is the low salaries typical of the field.
-      This will be the first factor we'll be discussing.
-    </p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-    <h2>Starting Salaries</h2>
-    <p>
-      [Summary stats on national averages of starting salaries]
-    </p>
-    <object type="image/svg+xml"
-    data='{{url_for('static', filename='starting_salary.svg')}}'
-    class='svgfig'>Your browser does not support SVG</object>
-    <div align="center"><h4>
-      Figure 1: Starting salary (1-5 years of experience) in select states
-    </h4>
+    <title>Broadband Market</title>
 
-    <div align="left"><p>
-      Certain things will affect these starting salaries but let's look at where
-      the salary funds are actually coming from. The data source has the federal,
-      state, and local funds available. Let's take a look at those supplied funds
-      per student.
-    </p>
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="{{url_for('static', filename='css/bootstrap-theme.min.css')}}" rel="stylesheet">
 
-    <h2>Funding and Policies</h2>
-    <object type="image/svg+xml"
-    data='{{url_for('static', filename='fed_funding.svg')}}'
-    class='svgfig'>Your browser does not support SVG</object>
-    <div align="center"><h4>
-      Figure 2: Average federal funding supplied per student
-    </h4>
-    <object type="image/svg+xml"
-    data='{{url_for('static', filename='state_funding.svg')}}'
-    class='svgfig'>Your browser does not support SVG</object>
-    <div align="center"><h4>
-      Figure 3: Average state funding supplied per student
-    </h4>
-    <object type="image/svg+xml"
-    data='{{url_for('static', filename='local_funding.svg')}}'
-    class='svgfig'>Your browser does not support SVG</object>
-    <div align="center"><h4>
-      Figure 4: Average local funding supplied per student
-    </h4>
-  </div>
-  <div align="left"><p>
-    It is clear there are differences between funding policies. This can be due to
-    how the funds are requested. Specific funding for special needs programs, for example,
-    can be part of the differences between each district but typically a state has
-    a funding policy.</br>
-  </br>
-  Using k-means clustering, we are able to group similar funding policies and
-  see how what types of policies might exist.</p>
-  <object type="image/svg+xml"
-  data='{{url_for('static', filename='funding_policy_hist.svg')}}'
-  class='svgfig'>Your browser does not support SVG</object>
-  <div align="center"><h4>
-    Figure 5: Policy categories histogram in thousands
-  </h4>
-  <object type="image/svg+xml"
-  data='{{url_for('static', filename='funding_policy_bar.svg')}}'
-  class='svgfig'>Your browser does not support SVG</object>
-  <div align="center"><h4>
-    Figure 6: Policy categories funding
-  </h4>
-  <div align="left"><p>
-    These policies are defined by politicians at the local, state, and federal
-    levels. Let's compare political party to these policy categories.
-  </p>
-    <object type="image/svg+xml"
-    data='{{url_for('static', filename='party_policy_compare.svg')}}'
-    class='svgfig'>Your browser does not support SVG</object>
-    <div align="center"><h4>
-      Figure 7: Policy categories compared to political party of congressional district
-    </h4>
-    <div align="left"><p>
-    Last let's return back to the idea of the affect these policies may have.
+    <!-- Custom styles for this template -->
+    <link href="theme.css" rel="stylesheet">
 
-<h2>Student Outcomes</h2>
-<p>
-Student outcomes are also multifactorial. We wanted to see how well the available (plus some additional government sources)
-could be used to model the mathematics scores provided at <a href='http://nces.ed.gov/'>http://www.nces.ed.gov/</a>.
-</p>
-<object type="image/svg+xml"
-data='{{url_for('static', filename='confusion_matrix_small.png')}}'
-class='svgfig'>Your browser does not support SVG</object>
-<div align="center"><h4>
-  Figure 9: Confusion matrix of predicted binned scores to reported scores.
-</h4>
-[additional results from regression analysis]
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="{{url_for('static', filename='js/ie-emulation-modes-warning.js')}}"></script>
 
-  </div>
-</div>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Broadband Market</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="data">About Data</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <!--<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          -->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h2>Broadband Market Assessment</h2>
+        <p>This project is looking at several government data sources to assess the market saturation of broadband providers and predicting markets ripe for additional providers.</p>
+      </br>
+        <p>
+          The intial data sources include:
+          <ul class="list-group">
+            <li class="list-group-item">The national broadbandmap- http://www.broadbandmap.gov/, an already extensive resource in itself.
+        </li>
+            <li class="list-group-item">The census 2015 planning database using the most recent census estimates, (2013 for sub-county level data)- https://www.census.gov/data/developers/data-sets/planning-database.html
+        </li>
+            <li class="list-group-item">The 2012 Economic Census - https://www.census.gov/data/developers/data-sets/economic-census.html
+        </li>
+          </ul>
+  API calls will be used to access these data sources.</p>
+      </div>
+
+<!--
+      <div class="page-header">
+        <h1>Carousel</h1>
+      </div>
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <img data-src="holder.js/1140x500/auto/#777:#555/text:First slide" alt="First slide">
+          </div>
+          <div class="item">
+            <img data-src="holder.js/1140x500/auto/#666:#444/text:Second slide" alt="Second slide">
+          </div>
+          <div class="item">
+            <img data-src="holder.js/1140x500/auto/#555:#333/text:Third slide" alt="Third slide">
+          </div>
+        </div>
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+-->
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/docs.min.js')}}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{url_for('static', filename='js/ie10-viewport-bug-workaround.js')}}"></script>
+  </body>
+</html>
