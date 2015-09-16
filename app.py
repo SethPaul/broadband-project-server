@@ -3,9 +3,9 @@ from flask import Flask, render_template, request, redirect, Markup
 import requests
 import simplejson
 import datetime
-from bokeh.plotting import figure, output_file, show
-from bokeh.models import ColumnDataSource, DatetimeTickFormatter, NumeralTickFormatter
-from bokeh.embed import components
+# from bokeh.plotting import figure, output_file, show
+# from bokeh.models import ColumnDataSource, DatetimeTickFormatter, NumeralTickFormatter
+# from bokeh.embed import components
 
 app = Flask(__name__)
 
@@ -67,25 +67,25 @@ def graph():
         foo=r.json()
         values=foo[u'dataset'][u'data']
         column_names=foo[u'dataset'][u'column_names']
-        valDF=pd.DataFrame(values, columns=column_names )
-        valDF['Date']=valDF['Date'].map(convert_date)
+        # valDF=pd.DataFrame(values, columns=column_names )
+        # valDF['Date']=valDF['Date'].map(convert_date)
 
-        p1=figure(title= 'Data from Quandle WIKI set', plot_height=600, plot_width=600)
-        p1.xaxis.axis_label="Date"
+        # p1=figure(title= 'Data from Quandle WIKI set', plot_height=600, plot_width=600)
+        # p1.xaxis.axis_label="Date"
 
 
-        if 'closing_box' in request.form.keys():
-            closing_flag=True
-            p1.line(valDF['Date'],valDF['Close'], color= "#2222aa", line_width=3,  name="foo", legend=ticker+": Close")
-        if 'adjusted_box' in request.form.keys():
-            adjusted_flag=True
-            p1.line(valDF['Date'],valDF['Adj. Close'], color= "#DB9911", line_width=3,  name="foo", legend=ticker+": Adj. Close")
-        if 'volume_box' in request.form.keys():
-            volume_flag=True
-            p1.line(valDF['Date'],valDF['Volume'], color= "#009900", line_width=3,  name="foo", legend=ticker+": Volume")
-
-        p1.xaxis[0].formatter = DatetimeTickFormatter(formats=dict(days=['%b %d, %Y'],months=['%b- %Y'],years=['%b- %Y']))
-        p1.yaxis[0].formatter = NumeralTickFormatter(format='0,0')
+        # if 'closing_box' in request.form.keys():
+            # closing_flag=True
+            # p1.line(valDF['Date'],valDF['Close'], color= "#2222aa", line_width=3,  name="foo", legend=ticker+": Close")
+        # if 'adjusted_box' in request.form.keys():
+        #     adjusted_flag=True
+        #     p1.line(valDF['Date'],valDF['Adj. Close'], color= "#DB9911", line_width=3,  name="foo", legend=ticker+": Adj. Close")
+        # if 'volume_box' in request.form.keys():
+        #     volume_flag=True
+        #     p1.line(valDF['Date'],valDF['Volume'], color= "#009900", line_width=3,  name="foo", legend=ticker+": Volume")
+        #
+        # p1.xaxis[0].formatter = DatetimeTickFormatter(formats=dict(days=['%b %d, %Y'],months=['%b- %Y'],years=['%b- %Y']))
+        # p1.yaxis[0].formatter = NumeralTickFormatter(format='0,0')
 
         # print 'closing_box' in request.form.keys(), 'adjusted_box' in request.form.keys(), 'volume_box' in request.form.keys()
         # print closing_flag,adjusted_flag, volume_flag
@@ -94,10 +94,11 @@ def graph():
         # p1.line(valDF['Date'],valDF['Close'], color= "#2222aa", line_width=3,  name="foo", legend=ticker+": Close")
         # plot = figure(title= 'Data from Quandle WIKI set')
         # plot.circle( [1,2], [3,4])
-        plot_script, plot_div = components(p1)
+        # plot_script, plot_div = components(p1)
 
         # return render_template('interim.html', ticker=request.form['ticker'], closing_flag= request.form['closing_flag'], adjusted_flag= request.form['adjusted_flag'], volume= request.form['volume_flag'])
-        return render_template('interim.html', ticker=ticker, plot_script=Markup(plot_script), plot_div=Markup(plot_div))
+        # return render_template('interim.html', ticker=ticker, plot_script=Markup(plot_script), plot_div=Markup(plot_div))
+        return render_template('error_page.html', ticker=ticker)
 
 
 if __name__ == '__main__':
