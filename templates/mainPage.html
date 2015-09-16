@@ -1,0 +1,114 @@
+<!doctype html>
+<title>Teacher Shortage</title>
+<link rel=stylesheet type=text/css href='{{url_for('static', filename='page_style.css')}}'>
+<div class=page>
+  <div class=body>
+    <h1>Teacher Salaries</h1>
+    <h2>Background</h2>
+    <p>
+      There is currently a teacher shortage that is sweeping the nation
+      <sup>
+        <a href='http://www.nytimes.com/2015/08/10/us/teacher-shortages-spur-a-nationwide-hiring-scramble-credentials-optional.html'>1</a>,
+      </sup>.</br>
+      This shoratage can increase teacher-to-student ratios and in some cases reduce
+      the school year
+      <sup>
+      <a href='http://www.huffingtonpost.com/2015/04/22/kansas-schools-funding_n_7112702.html'>2</a></sup>.
+    </br>
+    <a href='http://www.pewresearch.org/fact-tank/2015/02/02/u-s-students-improving-slowly-in-math-and-science-but-still-lagging-internationally/'>3</a></sup>
+      [Additional info on background and factors.]
+    </p>
+    <p>
+      These shortages are a multifactorial problem but we'll try to look at a few
+      aspects of it. Government supplied data at <a href='http://nces.ed.gov/'>http://www.nces.ed.gov/</a>
+      will be used to analyze some of the factors related to this issue. One of
+      the leading complaints of teachers is the low salaries typical of the field.
+      This will be the first factor we'll be discussing.
+    </p>
+
+    <h2>Starting Salaries</h2>
+    <p>
+      [Summary stats on national averages of starting salaries]
+    </p>
+    <object type="image/svg+xml"
+    data='{{url_for('static', filename='starting_salary.svg')}}'
+    class='svgfig'>Your browser does not support SVG</object>
+    <div align="center"><h4>
+      Figure 1: Starting salary (1-5 years of experience) in select states
+    </h4>
+
+    <div align="left"><p>
+      Certain things will affect these starting salaries but let's look at where
+      the salary funds are actually coming from. The data source has the federal,
+      state, and local funds available. Let's take a look at those supplied funds
+      per student.
+    </p>
+
+    <h2>Funding and Policies</h2>
+    <object type="image/svg+xml"
+    data='{{url_for('static', filename='fed_funding.svg')}}'
+    class='svgfig'>Your browser does not support SVG</object>
+    <div align="center"><h4>
+      Figure 2: Average federal funding supplied per student
+    </h4>
+    <object type="image/svg+xml"
+    data='{{url_for('static', filename='state_funding.svg')}}'
+    class='svgfig'>Your browser does not support SVG</object>
+    <div align="center"><h4>
+      Figure 3: Average state funding supplied per student
+    </h4>
+    <object type="image/svg+xml"
+    data='{{url_for('static', filename='local_funding.svg')}}'
+    class='svgfig'>Your browser does not support SVG</object>
+    <div align="center"><h4>
+      Figure 4: Average local funding supplied per student
+    </h4>
+  </div>
+  <div align="left"><p>
+    It is clear there are differences between funding policies. This can be due to
+    how the funds are requested. Specific funding for special needs programs, for example,
+    can be part of the differences between each district but typically a state has
+    a funding policy.</br>
+  </br>
+  Using k-means clustering, we are able to group similar funding policies and
+  see how what types of policies might exist.</p>
+  <object type="image/svg+xml"
+  data='{{url_for('static', filename='funding_policy_hist.svg')}}'
+  class='svgfig'>Your browser does not support SVG</object>
+  <div align="center"><h4>
+    Figure 5: Policy categories histogram in thousands
+  </h4>
+  <object type="image/svg+xml"
+  data='{{url_for('static', filename='funding_policy_bar.svg')}}'
+  class='svgfig'>Your browser does not support SVG</object>
+  <div align="center"><h4>
+    Figure 6: Policy categories funding
+  </h4>
+  <div align="left"><p>
+    These policies are defined by politicians at the local, state, and federal
+    levels. Let's compare political party to these policy categories.
+  </p>
+    <object type="image/svg+xml"
+    data='{{url_for('static', filename='party_policy_compare.svg')}}'
+    class='svgfig'>Your browser does not support SVG</object>
+    <div align="center"><h4>
+      Figure 7: Policy categories compared to political party of congressional district
+    </h4>
+    <div align="left"><p>
+    Last let's return back to the idea of the affect these policies may have.
+
+<h2>Student Outcomes</h2>
+<p>
+Student outcomes are also multifactorial. We wanted to see how well the available (plus some additional government sources)
+could be used to model the mathematics scores provided at <a href='http://nces.ed.gov/'>http://www.nces.ed.gov/</a>.
+</p>
+<object type="image/svg+xml"
+data='{{url_for('static', filename='confusion_matrix_small.png')}}'
+class='svgfig'>Your browser does not support SVG</object>
+<div align="center"><h4>
+  Figure 9: Confusion matrix of predicted binned scores to reported scores.
+</h4>
+[additional results from regression analysis]
+
+  </div>
+</div>
